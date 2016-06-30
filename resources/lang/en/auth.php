@@ -28,6 +28,9 @@ return [
     'register' => 'Register',
     'name' => 'Name',
     'login_title' => 'Login - E Learning System',
-    'register_title' => 'Register - E Learning System'
+    'register_title' => 'Register - E Learning System',
+    'show_profile_title' => 'User Profile',
+    'avatar' => 'Profile Picture',
+    'update' => 'Update'
 
 ];

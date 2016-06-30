@@ -27,5 +27,8 @@ return [
     'sent_password_button' => 'Send Password Reset Link',
     'password_label' => 'Password',
     'password_confirm_label' => 'Confirm Password',
+    'old_password' => 'Old Password',
+    'new_password' => 'Enter New Password',
+    'change_password_button' => 'Change Your Password'
 
 ];

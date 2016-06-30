@@ -35,7 +35,8 @@
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>{{ trans('navbar.logout') }}</a></li>
+                            <li><a href="{{ url('/user/' . Auth::user()->id) }}"><i class="fa fa-btn fa-user"></i> {{ trans('navbar.profile') }}</a></li>
+                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> {{ trans('navbar.logout') }}</a></li>
                         </ul>
                     </li>
                 @endif

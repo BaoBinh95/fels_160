@@ -10,6 +10,7 @@ return [
     'login' => 'Login',
     'register' => 'Register',
     'logout' => 'Logout',
-    'toggle' => 'Toggle Navigation'
+    'toggle' => 'Toggle Navigation',
+    'profile' => 'Profile'
 
 ];
