@@ -17,6 +17,10 @@ Route::get('/', [
         return view('welcome');
     }
 ]);
+
+/**
+ * HomeController
+ */
 Route::get('/home', [
     'as' => 'home',
     'uses' => 'HomeController@index'
@@ -64,12 +68,52 @@ Route::resource('follows', 'FollowController', [
     'only' => ['store', 'destroy']
 ]);
 
+
 /**
  * Category Management
  */
-Route::resource('category', 'CategoriesController');
+Route::resource('admin/category', 'CategoriesController');
+//lấy các word trong category
+Route::get('admin/category/{id}/words',[
+    'as' => 'admin.category.words',
+    'uses' => 'CategoriesController@getAllWordsBelongsToCategory']);
+// add word vào category
+Route::get('admin/category/{id}/words/add',[
+    'as' => 'admin.category.words.add',
+    'uses' => 'CategoriesController@getAddWordBelongsToCategory']);
+Route::post('admin/category/{id}/words/create', [
+    'as' => 'admin.category.word.create',
+    'uses' => 'CategoriesController@addWordBelongsToCategory']);
+// User lấy List Categories
+Route::get('/categories', ['as' => 'user.categories', 'uses' => 'CategoriesController@getAllCategories']);
 
 /**
  * Word Management
  */
-Route::resource('word', 'WordsController');
+Route::resource('admin/word', 'WordsController', ['except' => ['create', 'store']]);
+// User List Words
+Route::get('/words', ['as' => 'user.words', 'uses' => 'WordsController@getAllWord']);
+//User: List Word In Category
+Route::get('category/{id}/word', [
+    'as' => 'category.word',
+    'uses' => 'LessonsController@getAllWordInCategory']);
+
+/**
+ * Lesson Management
+ */
+//show lesson
+Route::get('category/{id}/lessons/{lessonId}/', [
+    'as' => 'category.lessons',
+    'uses' => 'LessonsController@showLesson']);
+// startlesson
+Route::get('lessons/{id}', [
+    'as' => 'user.lessons',
+    'uses' => 'LessonsController@startLesson']);
+//cham diem cho nguoi dung
+Route::post('category/{id}/lessons/{lessonId}/result', [
+    'as' => 'category.lessons.result',
+    'uses' => 'LessonsController@responseResult']);
+//hien thi ket qua tung lesson
+Route::get('category/{id}/lessons/{lessonId}/showResult', [
+    'as' => 'category.lessons.showResult',
+    'uses' => 'LessonsController@showResult']);

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
-    protected $fillable = ['category_id'];
+    protected $fillable = ['title', 'category_id', 'id'];
 
     /**
      * Relationship between lesson and category
@@ -33,5 +33,20 @@ class Lesson extends Model
     public function activities()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    public function words()
+    {
+        return $this->belongsToMany(Word::class, 'lesson_words', 'lesson_id', 'word_id');
+    }
+
+    public function wordAnswers()
+    {
+        return $this->belongsToMany(WordAnswer::class, 'lesson_words', 'lesson_id', 'word_answer_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

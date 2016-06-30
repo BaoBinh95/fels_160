@@ -25,4 +25,8 @@ return [
     'add_admin_fail' => 'There are some error occurred during process!',
     'not_found' => 'User not found!',
     'delete_user_fail' => 'There are some error occurred during process!',
+    'lesson_delete_success' => 'Delete Lesson Success',
+    'lesson_delete_fail' => 'Delete Lesson Fail',
+    'lesson_edit_success' => 'Edit Lesson Success',
+    'user_delete_success' => 'Deleted successfully!',
 ];

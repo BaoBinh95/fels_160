@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Word;
 
 class HomeController extends Controller
 {
@@ -26,4 +28,5 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
 }

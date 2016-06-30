@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Word;
 use App\Http\Requests;
 use App\Http\Requests\CategoryCreateRequest;
+use App\Http\Requests\WordCreateRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoriesController extends Controller
@@ -26,6 +28,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::paginate(config('settings.paging_number'));
+
         return view('admin.category.index', compact('categories'));
     }
 
@@ -63,6 +66,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
+
         return view('admin.category.edit', compact('category'));
     }
 
@@ -73,7 +77,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryCreateRequest $request, $id)
     {
         $allRequest = $request->all();
         $category = Category::find($id);
@@ -100,5 +104,56 @@ class CategoriesController extends Controller
             return redirect()->action('CategoriesController@index')
                 ->with('errors', trans('session.category_delete_fail'));
         }
+    }
+
+    public function getAllWordsBelongsToCategory($id)
+    {
+        $category = Category::find($id)->name;
+        $words = Category::find($id)->words()->get();
+
+        return view('admin.word.list', compact('category','words'));
+    }
+
+    public function getAddWordBelongsToCategory($id)
+    {
+        $category = Category::find($id);
+
+        return view('admin.word.create', compact('category'));
+    }
+
+    public function addWordBelongsToCategory(WordCreateRequest $request, $id)
+    {
+        $category = Category::find($id);
+        $word = $category->words()->create([
+            'content' => $request->input('content'),
+        ]);
+        $result = $request->get('word');
+
+        for ($i = 0; $i < sizeof($result); $i++) {
+            if (isset($result[$i]['answer'])) {
+                if (isset($result[$i+1]['correct']) && isset($result[$i+2]['correct'])) {
+                    $word->wordAnswers()->create([
+                        'correct' => config('settings.is_correct'),
+                        'content' => $result[$i]['answer'],
+                    ]);
+                } else {
+                    $word->wordAnswers()->create([
+                        'correct' => config('settings.not_correct'),
+                        'content' => $result[$i]['answer'],
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->action('CategoriesController@index')->with('success', trans('session.word_add_success'));
+    }
+
+    //show categories for user
+    public function getAllCategories()
+    {
+        $categories = Category::paginate(config('settings.paging_number'));
+
+        return view('user.categories', compact('categories'));
+
     }
 }

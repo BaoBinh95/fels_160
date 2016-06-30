@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class CategoryCreateRequest extends Request
+class LessonCreateRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,14 @@ class CategoryCreateRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|unique:categories,name',
+            'title' => 'required:lessons,title',
         ];
     }
-
 
     public function messages()
     {
         return [
-            'name.required' => trans('category.validate.name_required'),
-            'name.unique' => trans('category.validate.name_uniquired'),
+            'title.required' => trans('lesson.validate.title_required'),
         ];
     }
 }

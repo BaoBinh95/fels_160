@@ -5,13 +5,15 @@
 @stop
 
 @section('content')
+
 <div class="container">
-    <!-- Title Word Manager -->
     <div class="word_list_title">
-        <h1>{{ trans('word.word_manager') }}</h1>
+        <span>
+            <h1>{{ $category }}</h1>
+        </span>
+
     </div>
 
-    <!-- List Word -->
     <table class="table table-bordered" id="dataTables-example">
     @include('layouts.partials.success')
         <thead>
@@ -24,11 +26,10 @@
             </tr>
         </thead>
         <tbody>
-
-            @foreach($words as $item)
+            @foreach ($words as $item)
             <tr>
-                <td>{{ $item->id}}</td>
-                <td>{{ link_to_action('CategoriesController@getAllWordsBelongsToCategory', $item->category->name, ['id' =>  $item->category->id ]) }}</td>
+                <td>{{ $item->id }}</td>
+                <td>{{ $category }}</td>
                 <td>{{ $item->content }}</td>
                 <td class="center">
                     {!! Form::open(['method' => 'DELETE', 'route' => ['admin.word.destroy', $item['id']]]) !!}
@@ -37,7 +38,7 @@
                 </td>
                 <td class="center">
                     {!! Form::open(['method' => 'GET', 'route' => ['admin.word.edit', $item['id']]]) !!}
-                    {!! Form::submit(trans('word.word_edit'), ['class' =>'btn btn-primary']) !!}
+                    {!! Form::submit(trans('word.word_edit'), ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
                 </td>
             </tr>
@@ -46,11 +47,6 @@
     </table>
     <!-- end table -->
 
-    <!-- pagination -->
-    <div class="pagination pull-right">
-        {!! $words->appends(Request::except('page'))->links() !!}
-    </div>
-    <!-- end pagination -->
-
 </div>
+
 @stop

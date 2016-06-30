@@ -22,4 +22,13 @@ return [
     'word_delete_success' => 'Word Delete Success',
     'word_delete_fail' =>  'Word Delete Fail',
     'enter_content_word' => 'Please Enter Word Content',
+    'word_count' => 'Total Word',
+    'word' => 'Word',
+    'word_manager' => 'Word Manager',
+    'learnt_words' => 'Learnt Words',
+    'is_correct' => 'Is Correct',
+    'add_word_answer' => 'Add word answer',
+    'alert_add_words_answer' => 'You Can Not Add Word Answer!',
+    'true_word' => 'True',
+    'fail_word' => 'False. Correct answer is',
 ];

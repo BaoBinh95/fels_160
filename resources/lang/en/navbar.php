@@ -13,4 +13,5 @@ return [
     'toggle' => 'Toggle Navigation',
     'profile' => 'Profile',
     'users' => 'Users',
+    'learning' => 'Learning',
 ];
