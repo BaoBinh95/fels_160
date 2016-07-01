@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//User Management
 Route::auth();
+Route::get('/user/{user}', 'UserController@index');
+Route::put('/user/{user}', 'UserController@update');
+Route::post('user/password', 'Auth\PasswordController@update');
 
 Route::get('/home', 'HomeController@index');
