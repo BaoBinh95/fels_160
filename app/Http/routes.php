@@ -14,15 +14,34 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', 'HomeController@index');
 
-//User Management
+/**
+ * User Management
+ */
 Route::auth();
-Route::get('/user/{user}', 'UserController@index');
-Route::put('/user/{user}', 'UserController@update');
-Route::post('user/password', 'Auth\PasswordController@update');
+Route::get('/user/{user}', [
+    'as' => 'user_info',
+    'uses' => 'UserController@index']);
+Route::put('/user/{user}', [
+    'as' => 'update_info',
+    'uses' => 'UserController@update'
+]);
+Route::post('user/password', [
+    'as' => 'update_password',
+    'uses' => 'Auth\PasswordController@update'
+]);
 
-//Social Authentication
+/**
+ * Social Authentication
+ */
 Route::get('/redirect/{provider}', 'SocialAuthController@redirectToProvider');
 Route::get('/callback/{provider}', 'SocialAuthController@handleProviderCallback');
 
-Route::get('/home', 'HomeController@index');
+/**
+ * Follows
+ */
+
+Route::resource('follows', 'FollowController',
+    ['only' => ['store', 'destroy']
+]);

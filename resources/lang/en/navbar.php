@@ -11,6 +11,6 @@ return [
     'register' => 'Register',
     'logout' => 'Logout',
     'toggle' => 'Toggle Navigation',
-    'profile' => 'Profile'
+    'profile' => 'Profile',
 
 ];

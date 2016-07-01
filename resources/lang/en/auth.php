@@ -34,6 +34,6 @@ return [
     'update' => 'Update',
     'facebook_login' => 'Sign in with Facebook',
     'twitter_login' => 'Sign in with Twitter',
-    'google_login' => 'Sign in with Google'
+    'google_login' => 'Sign in with Google',
 
 ];
