@@ -21,4 +21,8 @@ Route::get('/user/{user}', 'UserController@index');
 Route::put('/user/{user}', 'UserController@update');
 Route::post('user/password', 'Auth\PasswordController@update');
 
+//Social Authentication
+Route::get('/redirect/{provider}', 'SocialAuthController@redirectToProvider');
+Route::get('/callback/{provider}', 'SocialAuthController@handleProviderCallback');
+
 Route::get('/home', 'HomeController@index');

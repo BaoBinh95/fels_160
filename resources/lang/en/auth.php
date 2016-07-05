@@ -31,6 +31,9 @@ return [
     'register_title' => 'Register - E Learning System',
     'show_profile_title' => 'User Profile',
     'avatar' => 'Profile Picture',
-    'update' => 'Update'
+    'update' => 'Update',
+    'facebook_login' => 'Sign in with Facebook',
+    'twitter_login' => 'Sign in with Twitter',
+    'google_login' => 'Sign in with Google'
 
 ];

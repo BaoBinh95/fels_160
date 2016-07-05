@@ -44,6 +44,18 @@
                             <div class="col-md-6 col-md-offset-4">
                                 {{ Form::button('<i class="fa fa-btn fa-sign-in"></i> ' . trans("auth.login"), ['type' => 'submit', 'class' => 'btn btn-primary']) }}
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">{{ trans('auth.forgot_password') }}</a>
+                                <p>
+                                    <a class="btn btn-link" href="redirect/facebook">
+                                        <span class="fa fa-facebook"></span> {{ trans('auth.facebook_login') }}
+                                    </a>
+
+                                    <a class="btn btn-link" href="redirect/twitter">
+                                        <span class="fa fa-twitter"></span> {{ trans('auth.twitter_login') }}
+                                    </a>
+                                    <a class="btn btn-link" href="redirect/google">
+                                        <span class="fa fa-google"></span> {{ trans('auth.google_login') }}
+                                    </a>
+                                </p>
                             </div>
                         </div>
 
