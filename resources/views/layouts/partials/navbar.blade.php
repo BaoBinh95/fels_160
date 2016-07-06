@@ -11,32 +11,35 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('fels.title') }}
-            </a>
+            {{ link_to_route('welcome', config('fels.title'), null, ['class' => 'navbar-brand']) }}
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li><a href="{{ url('/home') }}">{{ trans('navbar.home') }}</a></li>
+                <li>{{ link_to_route('home', trans('navbar.home')) }}</li>
+                <li>{{ link_to_route('users.index', trans('navbar.users')) }}</li>
             </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
-                @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">{{ trans('navbar.login') }}</a></li>
-                    <li><a href="{{ url('/register') }}">{{ trans('navbar.register') }}</a></li>
+                @if (auth()->guest())
+                    <li>{{ link_to('/login', trans('navbar.login')) }}</li>
+                    <li>{{ link_to('/register', trans('navbar.register')) }}</li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ trans('navbar.name', ['name' =>  Auth::user()->name]) }} <span class="caret"></span>
+                            {{ trans('navbar.name', ['name' => auth()->user()->name]) }} <span class="caret"></span>
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/user/' . Auth::user()->id) }}"><i class="fa fa-btn fa-user"></i> {{ trans('navbar.profile') }}</a></li>
-                            <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> {{ trans('navbar.logout') }}</a></li>
+                            <li>
+                                {!! HTML::decode(link_to_route('users.show', '<i class="fa fa-btn fa-user"></i> ' . trans('navbar.profile'), auth()->id())) !!}
+                            </li>
+                            <li>
+                                {!! HTML::decode(link_to_route('logout', '<i class="fa fa-btn fa-sign-out"></i> ' . trans('navbar.logout'))) !!}
+                            </li>
                         </ul>
                     </li>
                 @endif

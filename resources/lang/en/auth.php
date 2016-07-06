@@ -30,6 +30,7 @@ return [
     'login_title' => 'Login - E Learning System',
     'register_title' => 'Register - E Learning System',
     'show_profile_title' => 'User Profile',
+    'users_index_title' => 'List of Users',
     'avatar' => 'Profile Picture',
     'update' => 'Update',
     'facebook_login' => 'Sign in with Facebook',
