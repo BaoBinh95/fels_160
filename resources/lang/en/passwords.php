@@ -29,6 +29,7 @@ return [
     'password_confirm_label' => 'Confirm Password',
     'old_password' => 'Old Password',
     'new_password' => 'Enter New Password',
-    'change_password_button' => 'Change Your Password'
+    'change_password_button' => 'Change Your Password',
+    'change_password_title' => 'Change Your Password',
 
 ];

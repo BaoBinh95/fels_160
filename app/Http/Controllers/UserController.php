@@ -6,6 +6,7 @@ use Gate;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Follow;
 use App\Http\Requests;
 use App\Http\Requests\UpdateUserRequest;
 
@@ -25,9 +26,11 @@ class UserController extends Controller
      */
     public function index($id)
     {
+        $currentUser = Auth::user();
         $user = User::findOrFail($id);
+        $isFollowed = Follow::FollowedBy($user->id, $currentUser->id)->first();
 
-        return view('user.index', compact('user'));
+        return view('user.index', compact('user', 'currentUser', 'isFollowed'));
     }
 
     /**
