@@ -21,5 +21,4 @@ return [
     'warning_content' => 'Name, email address and profile picture are fake.',
     'name' => 'Name',
     'email' => 'Email',
-
 ];

@@ -45,3 +45,11 @@ Route::get('/callback/{provider}', 'SocialAuthController@handleProviderCallback'
 Route::resource('follows', 'FollowController',
     ['only' => ['store', 'destroy']
 ]);
+
+//Category Management
+Route::resource('category', 'CategoriesController');
+
+Route::get('/home', 'HomeController@index');
+
+//Word Management
+Route::resource('word', 'WordsController');
