@@ -20,5 +20,9 @@ return [
     'word_edit_success' => 'Word Edit Success',
     'word_delete_success' => 'Word Delete Success',
     'category_delete_fail' => 'Word Delete Fail',
-    'user_delete_success' => 'Deleted successfully!',
+    'user_delete_success' => 'User Deleted successfully!',
+    'add_admin_success' => 'This user has been appointed as administrator successfully!',
+    'add_admin_fail' => 'There are some error occurred during process!',
+    'not_found' => 'User not found!',
+    'delete_user_fail' => 'There are some error occurred during process!',
 ];

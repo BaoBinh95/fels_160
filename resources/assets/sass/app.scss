@@ -5,6 +5,18 @@
   margin-top: 20px;
 }
 
+.style-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+#delete-button, #make-admin {
+  display: inline-block;
+}
+
 #followings, #followers {
   li {
     list-style: none;

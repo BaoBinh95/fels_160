@@ -54,11 +54,6 @@
                         </tbody>
                     </table>
 
-                    <div class="alert alert-warning">
-                        <h4 class="alert-heading">{{ trans('content.warning') }}</h4>
-                        {{ trans('content.warning_content') }}
-                    </div>
-
                     @can('update-info', $user->id)
                         <h3>{{ trans('content.change-info') }}</h3>
                         @include('user.partials.update-info-form')

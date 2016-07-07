@@ -26,13 +26,21 @@ Route::get('/home', [
  * User Management
  */
 Route::auth();
-
-//Override Route Logout
 Route::get('logout', [
     'as' => 'logout',
     'uses' =>'Auth\AuthController@logout']);
 Route::resource('/users', 'UserController', [
     'only' => ['index', 'show']
+]);
+Route::delete('/users/{user}', [
+    'as' => 'users.destroy',
+    'middleware' => 'admin',
+    'uses' => 'UserController@destroy'
+]);
+Route::put('/users/{user}/admin', [
+    'as' => 'users.setAdmin',
+    'middleware' => 'admin',
+    'uses' => 'UserController@setAdmin'
 ]);
 Route::put('/users/{user}', [
     'as' => 'users.update',
@@ -52,13 +60,16 @@ Route::get('/callback/{provider}', 'SocialAuthController@handleProviderCallback'
 /**
  * Follows
  */
-
 Route::resource('follows', 'FollowController', [
     'only' => ['store', 'destroy']
 ]);
 
-//Category Management
+/**
+ * Category Management
+ */
 Route::resource('category', 'CategoriesController');
 
-//Word Management
+/**
+ * Word Management
+ */
 Route::resource('word', 'WordsController');
