@@ -12,5 +12,5 @@ return [
     'logout' => 'Logout',
     'toggle' => 'Toggle Navigation',
     'profile' => 'Profile',
-
+    'users' => 'Users',
 ];

@@ -11,23 +11,34 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home', 'HomeController@index');
+Route::get('/', [
+    'as' => 'welcome',
+    function () {
+        return view('welcome');
+    }
+]);
+Route::get('/home', [
+    'as' => 'home',
+    'uses' => 'HomeController@index'
+]);
 
 /**
  * User Management
  */
 Route::auth();
-Route::get('/user/{user}', [
-    'as' => 'user_info',
-    'uses' => 'UserController@index']);
-Route::put('/user/{user}', [
-    'as' => 'update_info',
+
+//Override Route Logout
+Route::get('logout', [
+    'as' => 'logout',
+    'uses' =>'Auth\AuthController@logout']);
+Route::resource('/users', 'UserController', [
+    'only' => ['index', 'show']
+]);
+Route::put('/users/{user}', [
+    'as' => 'users.update',
     'uses' => 'UserController@update'
 ]);
-Route::post('user/password', [
+Route::post('users/password', [
     'as' => 'update_password',
     'uses' => 'Auth\PasswordController@update'
 ]);
@@ -42,14 +53,12 @@ Route::get('/callback/{provider}', 'SocialAuthController@handleProviderCallback'
  * Follows
  */
 
-Route::resource('follows', 'FollowController',
-    ['only' => ['store', 'destroy']
+Route::resource('follows', 'FollowController', [
+    'only' => ['store', 'destroy']
 ]);
 
 //Category Management
 Route::resource('category', 'CategoriesController');
-
-Route::get('/home', 'HomeController@index');
 
 //Word Management
 Route::resource('word', 'WordsController');

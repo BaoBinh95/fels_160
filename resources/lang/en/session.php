@@ -20,4 +20,5 @@ return [
     'word_edit_success' => 'Word Edit Success',
     'word_delete_success' => 'Word Delete Success',
     'category_delete_fail' => 'Word Delete Fail',
+    'user_delete_success' => 'Deleted successfully!',
 ];

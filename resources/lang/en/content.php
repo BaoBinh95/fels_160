@@ -21,4 +21,6 @@ return [
     'warning_content' => 'Name, email address and profile picture are fake.',
     'name' => 'Name',
     'email' => 'Email',
+    'action' => 'Action',
+    'users_index_heading' => 'List of Users',
 ];

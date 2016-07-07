@@ -6,7 +6,6 @@ use Gate;
 use Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Follow;
 use App\Http\Requests;
 use App\Http\Requests\UpdateUserRequest;
 
@@ -17,20 +16,31 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => 'index']);
+        $this->middleware('auth', ['except' => [
+            'show',
+            'index',
+        ]]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function index()
+    {
+        $users = User::paginate(config('fels.paginate'));
+        return view('user.index', compact('users'));
     }
 
     /**
      * @param $id
      * @return mixed
      */
-    public function index($id)
+    public function show($id)
     {
         $currentUser = Auth::user();
         $user = User::findOrFail($id);
-        $isFollowed = Follow::FollowedBy($user->id, $currentUser->id)->first();
 
-        return view('user.index', compact('user', 'currentUser', 'isFollowed'));
+        return view('user.show', compact('user', 'currentUser'));
     }
 
     /**

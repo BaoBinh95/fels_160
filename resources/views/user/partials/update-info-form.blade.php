@@ -1,4 +1,4 @@
-{!! Form::model($user, ['route' => ['update_info', $user->id], 'method' => 'PUT', 'class' => 'form-horizontal', 'files' => true]) !!}
+{!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'PUT', 'class' => 'form-horizontal', 'files' => true]) !!}
 
 {!! Form::label('name', trans('auth.name')) !!}
 {!! Form::text('name', null, ['class' => 'form-control']) !!}
