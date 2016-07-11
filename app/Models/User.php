@@ -70,4 +70,13 @@ class User extends Authenticatable
     {
         return auth()->id() ? ($this->id == auth()->id()) : false;
     }
+
+    /**
+     * Relationship between user and activity.
+     * @return mixed
+     */
+    public function activity()
+    {
+        return $this->hasMany(Activity::class)->with(['user', 'lesson']);
+    }
 }
