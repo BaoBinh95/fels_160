@@ -1,5 +1,6 @@
 <?php
 return [
     'title' => 'E Learning System',
-    'paginate' => 15,
+    'users_paginate' => 15,
+    'activity_paginate' => 5,
 ];

@@ -61,9 +61,12 @@
 
                 </div>
                 <div class="col-md-8">
-                    <div class="alert alert-info">
-                        <h2>{{ trans('content.activities') }}</h2>
-                    </div>
+                    @if (auth()->check() && $user->isFollowedBy(Auth::user()) || $user->isCurrent())
+                        <div class="alert alert-info">
+                            <h2>{{ trans('content.activities') }}</h2>
+                            @include('user.partials.activity')
+                        </div>
+                    @endif
 
                     @can('update-info', $user->id)
                         <div class="form-group col-md-8">

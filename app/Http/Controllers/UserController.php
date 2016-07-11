@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use Gate;
 use Auth;
 use Illuminate\Http\Request;
@@ -27,15 +28,17 @@ class UserController extends Controller
     }
 
     /**
+     * List all users.
      * @return mixed
      */
     public function index()
     {
-        $users = User::paginate(config('fels.paginate'));
+        $users = User::paginate(config('fels.users_paginate'));
         return view('user.index', compact('users'));
     }
 
     /**
+     * Show the specific user.
      * @param $id
      * @return mixed
      */
@@ -43,11 +46,15 @@ class UserController extends Controller
     {
         $currentUser = Auth::user();
         $user = User::findOrFail($id);
+        $activity = Activity::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(config('fels.activity_paginate'));
 
-        return view('user.show', compact('user', 'currentUser'));
+        return view('user.show', compact('user', 'currentUser', 'activity'));
     }
 
     /**
+     * Update user.
      * @param UpdateUserRequest $request
      * @param $id
      * @return mixed
