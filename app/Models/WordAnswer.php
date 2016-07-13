@@ -17,4 +17,9 @@ class WordAnswer extends Model
     {
         return $this->belongsTo(Word::class);
     }
+
+    public function lessons()
+    {
+        return $this->belongsToMany(Lesson::class, 'lesson_words', 'word_answer_id', 'lesson_id');
+    }
 }

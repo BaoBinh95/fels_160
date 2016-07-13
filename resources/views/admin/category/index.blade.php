@@ -8,26 +8,34 @@
 <div class="container">
     <table class="table table-bordered" id="dataTables-example">
     @include('layouts.partials.success')
+        <thead align="center"> <h1>{{ trans('category.list_category') }}</h1></thead>
         <thead>
             <tr align="center">
                 <th>{{ trans('category.id_category') }}</th>
                 <th>{{ trans('category.name_category') }}</th>
+                <th>{{ trans('category.total_word') }}</th>
+                <th>{{ trans('word.word_add') }}</th>
                 <th>{{ trans('category.delete_category') }}</th>
                 <th>{{ trans('category.edit_category') }}</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($categories as $item)
+            @foreach ($categories as $item)
             <tr>
                 <td>{{ $item['id'] }}</td>
-                <td>{{ $item['name'] }}</td>
+                <td>{{ link_to_action('CategoriesController@getAllWordsBelongsToCategory', $item['name'], ['id' => $item['id']]) }}</td>
+                <!-- Total Word in Category -->
+                <td>{{ $item->getCountWords() }}</td>
                 <td class="center">
-                    {!! Form::open(['method' => 'DELETE', 'route' => ['category.destroy', $item['id']]]) !!}
+                    <a class="btn btn-primary" href="{{ route('admin.category.words.add', $item['id']) }}" role="button"><i class="fa fa-plus-circle"></i> {{ trans('word.word_add') }} </a>
+                </td>
+                <td class="center">
+                    {!! Form::open(['method' => 'DELETE', 'route' => ['admin.category.destroy', $item['id']]]) !!}
                     {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure to delete ?')"]) !!}
                     {!! Form::close() !!}
                 </td>
                 <td class="center">
-                    {!! Form::open(['method' => 'GET', 'route' => ['category.edit', $item['id']]]) !!}
+                    {!! Form::open(['method' => 'GET', 'route' => ['admin.category.edit', $item['id']]]) !!}
                     {!! Form::submit(trans('category.edit'), ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
                 </td>
@@ -42,5 +50,11 @@
         {!! $categories->appends(Request::except('page'))->links() !!}
     </div>
     <!-- end pagination -->
+
+    <!-- Add A New Category -->
+    <div>
+        <a class="btn btn-primary" href="{{ route('admin.category.create') }}"  role="button"><i class="fa fa-plus-circle"></i> {{ trans('category.category_add') }} </a>
+    </div>
+
 </div>
 @stop

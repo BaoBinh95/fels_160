@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Word;
 use App\Http\Requests;
 use App\Http\Requests\WordCreateRequest;
-use App\Models\Category;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\Category;
+use App\Models\WordAnswer;
+use App\Models\Word;
 
 class WordsController extends Controller
 {
@@ -27,7 +28,9 @@ class WordsController extends Controller
     public function index()
     {
         $words = Word::with('category')->paginate(config('settings.paging_number'));
-        return view('admin.word.index', compact('words'));
+        $categories = Category::lists('name', 'id');
+
+        return view('admin.word.index', compact('words', 'categories'));
     }
 
     /**
@@ -38,6 +41,7 @@ class WordsController extends Controller
     public function create()
     {
         $categories = Category::lists('name', 'id');
+
         return view('admin.word.create', compact('categories'));
     }
 
@@ -47,12 +51,13 @@ class WordsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function store(WordCreateRequest $request)
     {
-        $word = new Word();
-        $word->category_id = $request->category_id;
-        $word->content = $request->content;
-        $word->save();
+        Word::create([
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+        ]);
 
         return redirect()->action('WordsController@index')->with('success', trans('session.word_add_success'));
     }
@@ -67,8 +72,9 @@ class WordsController extends Controller
     {
         $word = Word::find($id);
         $categories = Category::lists('name', 'id');
+        $wordAnswers = $word->wordAnswers;
 
-        return view('admin.word.edit', compact('word', 'categories'));
+        return view('admin.word.edit', compact('word', 'categories', 'wordAnswers'));
     }
 
     /**
@@ -78,11 +84,38 @@ class WordsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+    public function update(WordCreateRequest $request, $id)
     {
         $allRequest = $request->all();
         $word = Word::find($id);
-        $word->update($allRequest);
+        $word->content = $request->input('content');
+        $word->save();
+        //get all word answer of word
+        $wordAnswers = $word->wordAnswers;
+        //delete old wordanswer to prepare update
+
+        foreach ($wordAnswers as $word_answer) {
+            WordAnswer::destroy($word_answer->id);
+        }
+        $result = $request->get('word');
+
+        for ($i = 0; $i < sizeof($result); $i++) {
+            if (isset($result[$i]['answer'])) {
+                if (isset($result[$i+1]['correct']) && isset($result[$i+2]['correct'])) {
+                    $word->wordAnswers()->create([
+                        'correct' => config('settings.is_correct'),
+                        'content' => $result[$i]['answer'],
+                    ]);
+                }
+                else {
+                    $word->wordAnswers()->create([
+                        'correct' => config('settings.not_correct'),
+                        'content' => $result[$i]['answer'],
+                    ]);
+                }
+            }
+        }
 
         return redirect()->action('WordsController@index')->with('success', trans('session.word_edit_success'));
     }
@@ -106,4 +139,13 @@ class WordsController extends Controller
                 ->with('errors', trans('session.word_delete_fail'));
         }
     }
+
+    //show list word for user
+    public function getAllWord()
+    {
+        $words = Word::with('category')->paginate(config('settings.paging_number'));
+
+        return view('user.words', compact('words'));
+    }
+
 }

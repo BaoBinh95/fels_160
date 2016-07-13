@@ -24,7 +24,7 @@ class WordCreateRequest extends Request
     public function rules()
     {
         return [
-            'content' => 'required|unique:words, content'
+            'content' => 'required|min:3',
         ];
     }
 
@@ -32,7 +32,6 @@ class WordCreateRequest extends Request
     {
         return [
             'content.required' => trans('word.validate.content_required'),
-            'content.unique' => trans('word.validate.content_unique'),
         ];
     }
 }

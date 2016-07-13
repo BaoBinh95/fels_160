@@ -79,4 +79,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Activity::class)->with(['user', 'lesson']);
     }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
 }

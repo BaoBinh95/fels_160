@@ -6,10 +6,15 @@
 
 @section('content')
     <div class="container">
-        <div class="col-lg-7">
+
+        <div class="col-md-6 col-md-offset-4">
+            <h1>{{ trans('category.create_category_title') }}</h1>
+        </div>
+
+        <div class="col-lg-6 col-md-offset-2">
             <div class="form-group">
                 @include('layouts.partials.errors')
-                {!! Form::open(['url' => '/category', 'method' => 'POST', 'class' => 'form-horizontal']) !!}
+                {!! Form::open(['route' => 'admin.category.store', 'method' => 'POST', 'class' => 'form-horizontal']) !!}
                 {{ Form::label('name', trans('category.name_category')) }}
                 {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => trans('category.enter_name_category')]) !!}
             </div>
