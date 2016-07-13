@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Requests\CategoryCreateRequest;
 use App\Http\Requests\WordCreateRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\Response;
 
 class CategoriesController extends Controller
 {
@@ -17,13 +18,13 @@ class CategoriesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('admin')->except('getAllCategories');
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -35,7 +36,7 @@ class CategoriesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -45,8 +46,8 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CategoryCreateRequest|Request $request
+     * @return Response
      */
     public function store(CategoryCreateRequest $request)
     {
@@ -61,7 +62,7 @@ class CategoriesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -73,9 +74,9 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param CategoryCreateRequest|Request $request
+     * @param  int $id
+     * @return Response
      */
     public function update(CategoryCreateRequest $request, $id)
     {
@@ -90,7 +91,7 @@ class CategoriesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -147,8 +148,7 @@ class CategoriesController extends Controller
 
         return redirect()->action('CategoriesController@index')->with('success', trans('session.word_add_success'));
     }
-
-    //show categories for user
+    
     public function getAllCategories()
     {
         $categories = Category::paginate(config('settings.paging_number'));

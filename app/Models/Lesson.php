@@ -35,16 +35,27 @@ class Lesson extends Model
         return $this->hasMany(Activity::class);
     }
 
+    /**
+     * Relationship between lesson and word.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function words()
     {
         return $this->belongsToMany(Word::class, 'lesson_words', 'lesson_id', 'word_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function wordAnswers()
     {
         return $this->belongsToMany(WordAnswer::class, 'lesson_words', 'lesson_id', 'word_answer_id');
     }
 
+    /**
+     * Relationship between lesson and user.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

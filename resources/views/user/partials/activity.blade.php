@@ -5,10 +5,14 @@
             <span class="pull-right text-muted small time-line">
              {{ $event->created_at->diffForHumans() }} <span class="fa fa-clock-o"></span>
             </span>
-            {{ $event->user->name }} have learned 5 words from Lesson '{{ $event->lesson->category->name }}'.
+            @if ($event->words > 1)
+                {{ trans('content.activity', ['name' => $user->name, 'words' => $event->words, 'countWords' => 'words', 'lesson' => $event->lesson->category->name]) }}
+            @else
+                {{ trans('content.activity', ['name' => $user->name, 'words' => $event->words, 'countWords' => 'word', 'lesson' => $event->lesson->category->name]) }}
+            @endif
         </li>
     @empty
-        <p>{{ $user->name }} have no activity for now!</p>
+        <p>{{ trans('content.no_activity', ['name' => $user->name]) }}</p>
     @endforelse
 
     {!! $activity->render() !!}
