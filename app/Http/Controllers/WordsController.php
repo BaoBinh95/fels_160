@@ -13,11 +13,11 @@ use App\Models\Word;
 class WordsController extends Controller
 {
     /**
-     * UserController constructor.
+     * WordsController constructor.
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('admin')->except('getAllWord');
     }
 
     /**
@@ -48,7 +48,7 @@ class WordsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param WordCreateRequest|Request $request
      * @return \Illuminate\Http\Response
      */
 
@@ -80,8 +80,8 @@ class WordsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param WordCreateRequest|Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
 

@@ -20,39 +20,44 @@
                 <li>{{ link_to_route('home', trans('navbar.home')) }}</li>
                 <li>{{ link_to_route('users.index', trans('navbar.users')) }}</li>
                 <!--User Learning -->
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        {{ trans('navbar.learning')}} <span class="caret"></span>
-                    </a>
+                @if (auth()->check())
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ trans('navbar.learning')}} <span class="caret"></span>
+                        </a>
 
-                    <ul class="dropdown-menu" role="menu">
-                        <!-- Category -->
-                        <li>
-                            <a class="default" href="{{ route('user.categories') }}" role="button">{{ trans('category.categoy') }} </a>
-                        </li>
-                        <!-- Word -->
-                        <li>
-                            <a class="default" href="{{ route('user.words') }}" role="button">{{ trans('word.word') }}</a>
-                        </li>
-                        <!-- Lesson -->
-                        <li>
-                            <a class="default" href="#" role="button">{{ trans('lesson.lesson') }} </a>
-                        </li>
-                    </ul>
-                </li>
+                        <ul class="dropdown-menu" role="menu">
+                            <!-- Category -->
+                            <li>
+                                <a class="default" href="{{ route('user.categories') }}" role="button">{{ trans('category.categoy') }} </a>
+                            </li>
+                            <!-- Word -->
+                            <li>
+                                <a class="default" href="{{ route('user.words') }}" role="button">{{ trans('word.word') }}</a>
+                            </li>
+                            <!-- Lesson -->
+                            <li>
+                                <a class="default" href="#" role="button">{{ trans('lesson.lesson') }} </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
-                <!-- Category Management -->
-                <li>
-                    <a class="default" href="{{ route('admin.category.index') }}" role="button">{{ trans('category.categoy') }} </a>
-                </li>
 
-                <!-- Word Management -->
-                <li class="dropdown">
-                    <a class="default" href="{{ route('admin.word.index') }}" role="button">{{ trans('word.word') }} </a>
-                </li>
+                @if (auth()->check() && Auth::user()->is_admin)
+                    <!-- Category Management -->
+                    <li>
+                        <a class="default" href="{{ route('admin.category.index') }}" role="button">{{ trans('category.categoy') }} </a>
+                    </li>
+
+                    <!-- Word Management -->
+                    <li class="dropdown">
+                        <a class="default" href="{{ route('admin.word.index') }}" role="button">{{ trans('word.word') }} </a>
+                    </li>
+                @endif
 
                 <!-- Authentication Links -->
                 @if (auth()->guest())

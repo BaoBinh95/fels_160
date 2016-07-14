@@ -36,4 +36,6 @@ return [
     'admin_action' => 'Admin Action',
     'delete' => 'Delete',
     'make_admin' => 'Make Admin',
+    'activity' => ':name have learned :words :countWords from Lesson \':lesson\'.',
+    'no_activity' => ':name have no activity for now!',
 ];

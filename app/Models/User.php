@@ -80,6 +80,10 @@ class User extends Authenticatable
         return $this->hasMany(Activity::class)->with(['user', 'lesson']);
     }
 
+    /**
+     * Relationship between user and lesson.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function lessons()
     {
         return $this->hasMany(Lesson::class);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LessonCreateRequest;
 use App\Http\Requests;
 use App\Models\Category;
+use App\Models\Activity;
 use App\Models\Lesson;
 use App\Models\Word;
 use App\Models\LessonWord;
@@ -14,6 +15,14 @@ use Carbon\Carbon;
 
 class LessonsController extends Controller
 {
+    /**
+     * LessonsController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function getAllWordInCategory($id)
     {
         $category = Category::find($id)->name;
@@ -84,6 +93,13 @@ class LessonsController extends Controller
         $lesson->result = $mark;
         $lesson->is_completed = config('settings.is_completed');
         $lesson->save();
+
+        $activity = new Activity();
+
+        $activity['words'] = $lesson->result;
+        $activity['user_id'] = Auth::user()->id;
+        $activity['lesson_id'] = $lesson->id;
+        $activity->save();
 
         return redirect()->route('category.lessons.showResult', [$id, $lessonId]);
     }

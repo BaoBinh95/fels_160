@@ -1,16 +1,16 @@
-window.$ = window.jQuery = require('jquery')
+window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass');
 
 // add word answer
-$(document).ready(function() {
+$(document).ready(function () {
     var i = 0;
     var tmp = 0;
-    $("#add").click(function() {
-        if($("div[id*='answer']").length >= 4) {
-            alert('trans('settings.alert_add_words_answer')');
+    $("#add").click(function () {
+        if ($("div[class*='answer']").length >= 4) {
+            alert($(this).attr('data-msg-add-more-word'));
         }
         else {
-            var rowAnswer = $("<div class='row' id='answer'/>");
+            var rowAnswer = $("<div class='answer row' />");
             var md1 = $("<div class='col-md-6' />");
             var md2 = $("<div class='col-md-6' />");
             var formGroup1 = $("<div class='form-group' />");
@@ -20,7 +20,7 @@ $(document).ready(function() {
             var inputCorrectHidden = $("<input name=\"word[][correct]\" type='hidden' id='correct' value='0'/>");
             var inputCorrect = $("<input name=\"word[][correct]\" type='radio' id='correct' value='1'/>");
             var removeButton = $("<input type=\"button\" class=\"remove btn btn-danger\" value=\"Remove\" />");
-            removeButton.click(function() {
+            removeButton.click(function () {
                 $(this).parent().parent().parent().remove();
             });
             formGroup1.append(content);
