@@ -55,6 +55,10 @@ Route::post('users/password', [
     'as' => 'update_password',
     'uses' => 'Auth\PasswordController@update'
 ]);
+Route::get('users/{user}/lessons', [
+    'as' => 'user.view_lessons',
+    'uses' => 'UserController@showLessons'
+]);
 
 /**
  * Social Authentication
