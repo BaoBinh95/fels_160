@@ -9,7 +9,7 @@
 
         <!-- title -->
         <div class="col-md-6 col-md-offset-3">
-            <h1 style="text-align:center;">{{ trans('lesson.doLesson') }}</h1>
+            <h1 class="style-center">{{ trans('lesson.doLesson') }}</h1>
         </div>
 
         <!-- form do lesson -->

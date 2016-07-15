@@ -22,7 +22,7 @@ return [
     'edit_category' => 'Edit',
     'enter_name_category' => 'Please Enter Category Name',
     'total_word' => 'Total Word',
-    'categoy' => 'Category',
+    'category' => 'Category',
     'users_do_lesson' => 'Do Lesson',
     'user_list_category' => 'List Category',
     ''

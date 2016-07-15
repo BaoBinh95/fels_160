@@ -6,7 +6,7 @@ return [
     * Language lines for content section
     */
     'dashboard' => 'Dashboard',
-    'login_message' => 'You are logged in!',
+    'login_message' => 'Howdy, :name! You are logged in!',
     'welcome' => 'Welcome to Framgia E-Learning System',
     'welcome_message' => 'Your Application\'s Landing Page.',
     'home_title' => 'Home Page - E Learning System',
