@@ -31,12 +31,12 @@
                 </td>
                 <td class="center">
                     {!! Form::open(['method' => 'DELETE', 'route' => ['admin.category.destroy', $item['id']]]) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure to delete ?')"]) !!}
+                    {{ Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> ' . trans('category.delete_category'), ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure to delete ?')"]) }}
                     {!! Form::close() !!}
                 </td>
                 <td class="center">
                     {!! Form::open(['method' => 'GET', 'route' => ['admin.category.edit', $item['id']]]) !!}
-                    {!! Form::submit(trans('category.edit'), ['class' => 'btn btn-primary']) !!}
+                    {{ Form::button('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' . trans('category.edit'), ['type' => 'submit', 'class' => 'btn btn-primary']) }}
                     {!! Form::close() !!}
                 </td>
             </tr>

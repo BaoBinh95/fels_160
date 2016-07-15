@@ -30,4 +30,7 @@ return [
     'alert_add_words_answer' => 'You Can Not Add More Word Answer!',
     'true_word' => 'True',
     'fail_word' => 'False. Correct answer is',
+    'required_content' => 'Please Enter Answer Content',
+    'required_true_word' => 'You Must Check True WordAnswer',
+    'required_complete_lesson' => 'You Must Try Complete this Lesson',
 ];

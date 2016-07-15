@@ -10,7 +10,7 @@
         <div class="col-lg-6">
             <div class="form-group">
                 @include('layouts.partials.errors')
-                {{ Form::open(['method' => 'POST', 'route' => ['admin.category.word.create', $category->id], 'class' => 'form-horizontal', 'id' => 'form-add-word']) }}
+                {{ Form::open(['method' => 'POST', 'route' => ['admin.category.word.create', $category->id], 'class' => 'form-horizontal', 'id' => 'form-add-word', 'required_content' => trans('word.required_content'), 'required_true_word' => trans('word.required_true_word')]) }}
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">

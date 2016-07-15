@@ -32,12 +32,12 @@
                 <td>{{ $item->content }}</td>
                 <td class="center">
                     {!! Form::open(['method' => 'DELETE', 'route' => ['admin.word.destroy', $item['id']]]) !!}
-                    {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure to delete ?')"]) !!}
+                    {{ Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i> ' . trans('word.word_delete'), ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure to delete ?')"]) }}
                     {!! Form::close() !!}
                 </td>
                 <td class="center">
                     {!! Form::open(['method' => 'GET', 'route' => ['admin.word.edit', $item['id']]]) !!}
-                    {!! Form::submit(trans('word.word_edit'), ['class' =>'btn btn-primary']) !!}
+                    {{ Form::button('<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' . trans('word.word_edit'), ['type' => 'submit', 'class' => 'btn btn-primary']) }}
                     {!! Form::close() !!}
                 </td>
             </tr>
