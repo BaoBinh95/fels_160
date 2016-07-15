@@ -25,19 +25,24 @@
                             <button type="button" class="btn btn-primary follows_button" data-toggle="collapse"
                                     data-target="#followings"><i class="fa fa-user-plus"></i> {{ trans('content.following') }}
                             </button>
+
                             <div id="followings" class="collapse">
                                 @foreach ($user->followings as $u)
                                     <li>{{ link_to_route('users.show', $u->name, $u->id) }}</li>
                                 @endforeach
                             </div>
+
                             <button type="button" class="btn btn-primary follows_button" data-toggle="collapse"
                                     data-target="#followers"><i class="fa fa-users"></i> {{ trans('content.followers') }}
                             </button>
+
                             <div id="followers" class="collapse">
                                 @foreach ($user->followers as $u)
                                     <li>{{ link_to_route('users.show', $u->name, $u->id) }}</li>
                                 @endforeach
                             </div>
+
+                            {!! HTML::decode(link_to_route('user.view_lessons', '<i class="fa fa-eye"></i> ' . trans('content.view_lessons'), ['user' => $currentUser->id], ['class' => 'btn btn-success'])) !!}
                         @endif
                     @endif
 

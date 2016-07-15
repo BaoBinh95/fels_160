@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activity;
+use App\Models\Lesson;
 use Gate;
 use Auth;
 use Illuminate\Http\Request;
@@ -124,5 +125,23 @@ class UserController extends Controller
 
         return redirect()->action('UserController@show')
             ->withErrors(trans('session.not_found'));
+    }
+
+    /**
+     * View the list of user's lessons.
+     * @param $id
+     * @return mixed
+     */
+    public function showLessons($id)
+    {
+        $user = User::findOrFail($id);
+
+        if (Gate::allows('update-info', $id)) {
+            $lessons = $user->lessons;
+
+            return view('user.lessons_list', compact('user', 'lessons'));
+        }
+
+        abort(403, trans('error.403'));
     }
 }

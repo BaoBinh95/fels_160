@@ -8,9 +8,8 @@
     <div class="container">
     <div class="word_list_title">
         <span>
-            <h1>{{ trans('word.word_list') . ':' .$category }}</h1>
+            <h1>{{ trans('word.word_list') . ': ' .$category }}</h1>
         </span>
-
     </div>
 
     <table class="table table-bordered" id="dataTables-example">
