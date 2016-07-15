@@ -25,5 +25,4 @@ return [
     'category' => 'Category',
     'users_do_lesson' => 'Do Lesson',
     'user_list_category' => 'List Category',
-    ''
 ];
