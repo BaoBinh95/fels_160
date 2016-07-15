@@ -31,5 +31,7 @@ return [
     'new_password' => 'Enter New Password',
     'change_password_button' => 'Change Your Password',
     'change_password_title' => 'Change Your Password',
-
+    'old_password_placeholder' => 'Enter Your Old Password',
+    'new_password_placeholder' => 'Enter Your New Password',
+    'new_password_confirm' => 'Retype Your New Password',
 ];
