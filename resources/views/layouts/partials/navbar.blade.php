@@ -17,8 +17,12 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li>{{ link_to_route('home', trans('navbar.home')) }}</li>
-                <li>{{ link_to_route('users.index', trans('navbar.users')) }}</li>
+                <li class="{{ Request::is('home*') ? 'active' : '' }}">
+                    {{ link_to_route('home', trans('navbar.home')) }}
+                </li>
+                <li class="{{ Request::is('users') ? 'active' : '' }}">
+                    {{ link_to_route('users.index', trans('navbar.users')) }}
+                </li>
                 <!--User Learning -->
                 @if (auth()->check())
                     <li class="dropdown">
@@ -29,7 +33,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <!-- Category -->
                             <li>
-                                <a class="default" href="{{ route('user.categories') }}" role="button">{{ trans('category.categoy') }} </a>
+                                <a class="default" href="{{ route('user.categories') }}" role="button">{{ trans('category.category') }} </a>
                             </li>
                             <!-- Word -->
                             <li>
@@ -37,7 +41,7 @@
                             </li>
                             <!-- Lesson -->
                             <li>
-                                <a class="default" href="#" role="button">{{ trans('lesson.lesson') }} </a>
+                                <a class="default" href="{{ route('user.view_lessons', Auth::user()->id) }}" role="button">{{ trans('lesson.lesson') }}</a>
                             </li>
                         </ul>
                     </li>
@@ -49,20 +53,24 @@
 
                 @if (auth()->check() && Auth::user()->is_admin)
                     <!-- Category Management -->
-                    <li>
-                        <a class="default" href="{{ route('admin.category.index') }}" role="button">{{ trans('category.categoy') }} </a>
+                <li class="{{ Request::is('admin/category*') ? 'active' : '' }}">
+                        <a class="default" href="{{ route('admin.category.index') }}" role="button">{{ trans('category.category') }} </a>
                     </li>
 
                     <!-- Word Management -->
-                    <li class="dropdown">
+                <li class="{{ Request::is('admin/word*') ? 'active' : '' }}">
                         <a class="default" href="{{ route('admin.word.index') }}" role="button">{{ trans('word.word') }} </a>
                     </li>
                 @endif
 
                 <!-- Authentication Links -->
                 @if (auth()->guest())
-                    <li>{{ link_to('/login', trans('navbar.login')) }}</li>
-                    <li>{{ link_to('/register', trans('navbar.register')) }}</li>
+                    <li class="{{ Request::is('login') ? 'active' : '' }}">
+                        {{ link_to('/login', trans('navbar.login')) }}
+                    </li>
+                    <li class="{{ Request::is('register') ? 'active' : '' }}">
+                        {{ link_to('/register', trans('navbar.register')) }}
+                    </li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

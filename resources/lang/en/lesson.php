@@ -11,7 +11,6 @@ return [
     ],
     'lesson_list' => 'List Lesson',
     'lesson_id' => 'ID',
-    'title_lesson' => 'Title Lesson',
     'lesson_delete' => 'Delete',
     'lesson_edit' => 'Edit',
     'edit_lesson' => 'Edit Lesson',
