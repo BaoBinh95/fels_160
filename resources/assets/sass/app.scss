@@ -121,3 +121,15 @@ $colHighlight: rgb(176, 190, 197);
     }
   }
 }
+
+#avatar_display {
+  width: 32px;
+  height: 32px;;
+  position: absolute;
+  top: 10px;
+  left: -25px;
+  border-radius: 50%;
+}
+#navbar_word {
+  margin-right: 25px;
+}

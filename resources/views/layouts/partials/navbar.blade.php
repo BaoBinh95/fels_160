@@ -54,13 +54,13 @@
                 @if (auth()->check() && Auth::user()->is_admin)
                     <!-- Category Management -->
                 <li class="{{ Request::is('admin/category*') ? 'active' : '' }}">
-                        <a class="default" href="{{ route('admin.category.index') }}" role="button">{{ trans('category.category') }} </a>
-                    </li>
+                    <a class="default" href="{{ route('admin.category.index') }}" role="button">{{ trans('category.category') }} </a>
+                </li>
 
                     <!-- Word Management -->
-                <li class="{{ Request::is('admin/word*') ? 'active' : '' }}">
-                        <a class="default" href="{{ route('admin.word.index') }}" role="button">{{ trans('word.word') }} </a>
-                    </li>
+                <li class="{{ Request::is('admin/word*') ? 'active' : '' }}" id="navbar_word">
+                    <a class="default" href="{{ route('admin.word.index') }}" role="button">{{ trans('word.word') }} </a>
+                </li>
                 @endif
 
                 <!-- Authentication Links -->
@@ -73,6 +73,7 @@
                     </li>
                 @else
                     <li class="dropdown">
+                        {!! Html::image(Auth::user()->avatar, null, ['class'=> 'img-responsive', 'id' => 'avatar_display']) !!}
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             {{ trans('navbar.name', ['name' => auth()->user()->name]) }} <span class="caret"></span>
                         </a>
