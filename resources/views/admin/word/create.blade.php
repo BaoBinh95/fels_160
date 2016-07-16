@@ -45,8 +45,10 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="javascript:void(0)" id="add" data-msg-add-more-word="{{ trans('word.alert_add_words_answer') }}">{{ trans('word.add_word_answer') }}</a>
-                        <br>
+                        <a href="javascript:void(0)" id="add" data-msg-add-more-word="{{ trans('word.alert_add_words_answer') }}">
+                            {{ trans('word.add_word_answer') }}
+                        </a>
+                        <br />
                     </div>
                 </div>
 

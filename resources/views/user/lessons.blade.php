@@ -12,7 +12,7 @@
         </div>
         <!-- form do lesson -->
         <div class="col-md-6">
-            {!! Form::open(['route' => ['category.lessons.result', $category->id, $lesson->id], 'method' => 'POST', 'class' => 'form-horizontal', 'id' => 'do_lesson', 'required_complete_lesson' => trans('word.required_complete_lesson')]) !!}
+            {!! Form::open(['route' => ['category.lessons.result', $category->id, $lesson->id], 'method' => 'POST', 'class' => 'form-horizontal', 'id' => 'do-lesson', 'required_complete_lesson' => trans('word.required_complete_lesson')]) !!}
             <ol>
                 @foreach ($words as $word)
 
@@ -20,10 +20,10 @@
                         <label>{{ $word->content }}</label>
                     </li>
 
-                    <div class="lesson_word">
+                    <div class="lesson-word">
                         <input type="hidden" value="{{ $word->id }}" name="word[]">
                         @foreach ($word->wordAnswers as $ws)
-                            <div class="word_answer">
+                            <div class="word-answer">
                                 <input type="radio" name="correct-{{ $word->id }}" value="{{ $ws->id }}"> &nbsp {{ $ws->content }}
                             </div>
                         @endforeach

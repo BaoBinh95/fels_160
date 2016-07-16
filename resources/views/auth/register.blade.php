@@ -46,12 +46,6 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                {!! Recaptcha::render() !!}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
                                 {{ Form::button('<i class="fa fa-btn fa-user"></i> ' . trans("auth.register"), ['type' => 'submit', 'class' => 'btn btn-primary']) }}
                             </div>
                         </div>

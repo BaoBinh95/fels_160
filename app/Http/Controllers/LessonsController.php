@@ -41,7 +41,6 @@ class LessonsController extends Controller
             'is_completed' => config('settings.not_completed'),
             'category_id' => $category->id
         ]);
-
         //Get word on lesson
         $lessonWords = [];
         foreach ($words as $word) {
@@ -77,7 +76,6 @@ class LessonsController extends Controller
         $lesson = Lesson::find($lessonId);
         //query word in lesson and remote the same word
         $words = $lesson->words()->distinct()->get();
-
         $mark = 0;
 
         foreach ($words as $word) {
@@ -108,13 +106,15 @@ class LessonsController extends Controller
     {
         $lesson = Lesson::find($lessonId);
         $words = $lesson->words()->distinct()->get();
+        $wordSize = $words->count();
+        $wordAnswerIds = LessonWord::select('word_answer_id', 'word_id')->where('is_answer_user', config('settings.is_answer_user'))->where('lesson_id', $lessonId)->get();
 
-        foreach ($words as $word) {
-            $word->answer = LessonWord::where('word_id', $word->id)->where('is_answer_user', 1)->first()->word_answer_id;
+        for ($i = 0; $i < $wordSize; $i++) {
+            if ($words[$i]->id == $wordAnswerIds[$i]->word_id) {
+                $words[$i]->answer = $wordAnswerIds[$i]->word_answer_id;
+            }
         }
 
-        //Size of word
-        $wordSize = $words->count();
         //user's mark
         $mark = $lesson->result;
 

@@ -26,7 +26,6 @@ class ChangePasswordRequest extends Request
         return [
             'old_password' => 'required',
             'password' => 'required|alphaNum|between:6,20|confirmed',
-            'g-recaptcha-response' => 'required|recaptcha',
         ];
     }
 }

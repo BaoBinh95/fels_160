@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lesson extends Model
 {
-    protected $fillable = ['title', 'category_id', 'id'];
+    protected $fillable = ['category_id', 'user_id', 'result', 'is_completed'];
 
     /**
      * Relationship between lesson and category

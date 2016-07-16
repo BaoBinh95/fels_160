@@ -31,7 +31,6 @@ class Word extends Model
     public function getCorrectAnswer()
     {
         $allAnswers = $this->wordAnswers()->get();
-        $count = 0;
 
         foreach ($allAnswers as $answer) {
             if ($answer->correct) {

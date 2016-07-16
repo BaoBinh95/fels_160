@@ -10,8 +10,7 @@
         "laravelcollective/html": "5.2.*",
         "laravel/socialite": "2.0.18",
         "guzzlehttp/guzzle": "~5.0",
-        "doctrine/dbal": "^2.5",
-        "greggilbert/recaptcha": "dev-master"
+        "doctrine/dbal": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

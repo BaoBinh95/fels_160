@@ -16,8 +16,8 @@
                     </div>
 
                     <div class="col-md-7">
-                        <h2>Welcome to Framgia E-Learning System</h2>
-                        <p>Framgia E-Learning System is a sample app that demonstrates how to build modern web
+                        <h2>Welcome to E-Learning System</h2>
+                        <p>E-Learning System is a sample app that demonstrates how to build modern web
                             applications using different frameworks. This version is built with <a href="http://laravel.com">Laravel 5.2</a> and
                             <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>.</p>
                         <h4>Get the Code</h4>

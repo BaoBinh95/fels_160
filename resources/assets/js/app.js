@@ -6,8 +6,8 @@ $(document).ready(function () {
     var i = 0;
     var tmp = 0;
 
-    $("#add").click(function () {
-        if ($("div[class*='answer']").length > 4) {
+    $('#add').click(function () {
+        if ($('div[class*=answer]').length > 4) {
             alert($(this).attr('data-msg-add-more-word'));
         } else {
             var rowAnswer = $("<div class='answer row' />");
@@ -70,7 +70,7 @@ $(document).ready(function () {
     }())
 
     // Check radio choose true answer and content
-    $("#form-add-word").submit(function(event) {
+    $('#form-add-word').submit(function(event) {
         if (!utils.validateContent($('input[name="word[][answer]"]'))) {
             alert($(this).attr('required_content'));
             return false;
@@ -94,8 +94,8 @@ $(document).ready(function () {
     }, 200);
 
     //check all word when do lesson
-    $("#do_lesson").submit(function(e) {
-        if ($("input[type=radio]:checked").length == $('.lesson_word').length) {
+    $('#do-lesson').submit(function(e) {
+        if ($('input[type=radio]:checked').length == $('.lesson-word').length) {
             return true;
         } else {
             alert($(this).attr('required_complete_lesson'));
